@@ -23,7 +23,12 @@ void displayPrompt() {
         perror("getcwd");
         return;
     }
- 
+
+    string dir_display = current_directory;
+    if (home_directory && dir_display.find(home_directory) == 0) {
+        dir_display.replace(0, string(home_directory).length(), "~");
+    }
+
     cout << username << "@" << systemname << ":" << current_directory << "> ";
 }
 
