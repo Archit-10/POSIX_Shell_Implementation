@@ -51,6 +51,7 @@ bool cd(const string &path) {
             }
         }
     }
+    setenv("OLDPWD", current_directory, 1);
     return true;
 }
 
