@@ -46,6 +46,21 @@ void pinfo(int pid) {
         status_str = "Unknown"; 
     }
 
+ stringstream mem_path;
+    mem_path << "/proc/" << pid << "/statm";
+
+    ifstream mem_file(mem_path.str());
+    if (!mem_file) {
+        perror("pinfo memory");
+        return;
+    }
+
+    unsigned long size, resident, shared, text, lib, data, dt;
+    mem_file >> size >> resident >> shared >> text >> lib >> data >> dt;
+    mem_file.close();
+   
+    const unsigned long page_size_kb = sysconf(_SC_PAGE_SIZE) / 1024;
+   
     stringstream exe_path;
     exe_path << "/proc/" << pid << "/exe";
 
