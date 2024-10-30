@@ -34,9 +34,10 @@
 <p>This POSIX Shell implementation stands out for its focus on user-friendly features and robust functionality. Designed for both novice and experienced users, it offers:</p>
 <ul>
     <li><strong>Simplicity and Efficiency:</strong> Enjoy a streamlined interface that prioritizes ease of use without sacrificing power.</li>
+        <li><strong>Comprehensive Documentation:</strong> Access clear and concise documentation to help users navigate and utilize all available features effectively.</li>
       <li><strong>Troubleshooting Section:</strong> Common issues and solutions to enhance user experience.</li>
     <li><strong>Future-Ready:</strong> Built with extensibility in mind, making it easy to introduce new features and enhancements as user needs evolve.</li>
-    <li><strong>Comprehensive Documentation:</strong> Access clear and concise documentation to help users navigate and utilize all available features effectively.</li>
+
 </ul>
 
 
