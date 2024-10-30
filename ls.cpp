@@ -60,8 +60,15 @@ void ls(const string &path, bool hidden_files, bool long_format) {
 
         cout << entry->d_name << (long_format ? "\n" : " ");
     }
-
+  cout << endl;
     closedir(dir);
+}
+
+void parse_flags(const string &flag_string, bool &hidden_files, bool &long_format) {
+    for (char flag : flag_string) {
+        if (flag == 'a') hidden_files = true;
+        if (flag == 'l') long_format = true;
+    }
 }
 
 void ls_command(vector<string> &args) {
@@ -76,9 +83,8 @@ void ls_command(vector<string> &args) {
             hidden_files = true;
         } else if (arg == "-l") {
             long_format = true;
-        } else if (arg == "-la" || arg == "-al") {
-            hidden_files = true;
-            long_format = true;
+        } else if (arg.find("-") == 0) {  
+            parse_flags(arg.substr(1), hidden_files, long_format);
         } else if (arg == "~") {
             arg = getenv("HOME"); 
             directories.push_back(arg);
@@ -86,14 +92,8 @@ void ls_command(vector<string> &args) {
             directories.push_back("."); 
         } else if (arg == "..") {
             directories.push_back(".."); 
-        } else if (arg.find("-") == 0 && i + 1 < args.size()) {
-            
-            string flags = arg.substr(1);
-            string directory = args[i + 1];
-            directories.push_back(directory);
-            i++; 
-        } else {
-            
+        }
+         else { 
             directories.push_back(arg);
         }
     }
@@ -103,6 +103,7 @@ void ls_command(vector<string> &args) {
     }
     
     for (string &directory : directories) {
+         cout << directory << ":" << endl;
         ls(directory, hidden_files, long_format);
     }
 }
