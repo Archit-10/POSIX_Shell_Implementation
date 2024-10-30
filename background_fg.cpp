@@ -12,11 +12,15 @@ using namespace std;
 void foreground(string &cmd) {
     pid_t child_pid = fork();
 
+if (child_pid == -1) {
+        perror("Error: fork");
+        return;
+    }
+    
 if (child_pid == 0) {
         vector<char*> v;
-         
-         istringstream iss(cmd);
-      string s;  
+        istringstream iss(cmd);
+        string s;  
         while (iss >> s) {
             v.push_back(strdup(s.c_str()));
         }
@@ -24,18 +28,14 @@ if (child_pid == 0) {
 
         if (execvp(v[0], v.data()) == -1) {
             perror("Error: execvp");
+            for (auto arg : v) free(arg);
             exit(EXIT_FAILURE);
         }
+    for (auto arg : v) free(arg);
     } else {
         int value;
         waitpid(child_pid, &value, 0);
     }
-
-    if (child_pid == -1) {
-        perror("Error:fork");
-        return;
-    }
-
 }
 void background(string &cmd) {
     pid_t child_pid = fork();
@@ -45,7 +45,11 @@ void background(string &cmd) {
         return;
     }
 
-    if (child_pid == 0) {
+    if (child_pid == 0) {In background:
+
+cpp
+
+for (auto arg : v) free(arg); 
       
         vector<char*> v;
         istringstream iss(cmd);
@@ -58,11 +62,13 @@ void background(string &cmd) {
 
         if (execvp(v[0], v.data()) == -1) {
             perror("execvp");
+              for (auto arg : v) {
+                free(arg);
+            }
             exit(EXIT_FAILURE);
         }
     } else {
-       
-        cout << child_pid << endl;
+           cout << "Background PID: " << child_pid << endl;
     }
 }
 
@@ -100,6 +106,21 @@ void pinfo(int pid) {
     } else {
         perror("pinfo");
     }
+
+      stringstream mem_path;
+    mem_path << "/proc/" << pid << "/statm";
+
+    ifstream mem_file(mem_path.str());
+    if (!mem_file) {
+        perror("pinfo memory");
+        return;
+    }
+
+    unsigned long size, resident, shared, text, lib, data, dt;
+    mem_file >> size >> resident >> shared >> text >> lib >> data >> dt;
+    mem_file.close();
+
+    const unsigned long page_size_kb = sysconf(_SC_PAGE_SIZE) / 1024;
 
     cout << "pid -- " << process_pid << endl;
     cout << "Process Status -- ";
