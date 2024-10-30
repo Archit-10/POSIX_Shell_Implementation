@@ -1,149 +1,74 @@
-# Custom-Shell-With-Command-Management-and-Process-Handling
+<h1>POSIX Shell Implementation 🚀</h1>
+
+<p>Welcome to my <strong>Custom POSIX Shell</strong> project! This shell isn’t just another terminal interface – it’s built from the ground up, designed to explore the nuances of system calls, error handling, and command-line operations with features that aim to enhance both utility and user experience. Whether you're exploring directory paths or handling process control, this shell has you covered!</p>
+
+<h2><strong>Key Features</strong></h2>
+<ul>
+    <li><strong>History:</strong> Keeps track of previously executed commands for easy retrieval.</li>
+    <li><strong>Autocompletion:</strong> Suggests commands and file paths to improve user experience.</li>
+    <li><strong>Signals:</strong> Handles system signals for effective process management.</li>
+    <li><strong>pinfo:</strong> Displays information about running processes.</li>
+    <li><strong>Background and Foreground Execution:</strong> Supports executing commands in both modes with and without arguments.</li>
+    <li><strong>Pipeline:</strong> Allows chaining commands, passing output from one as input to another.</li>
+    <li><strong>Redirection:</strong> Supports input and output redirection with pipeline functionality.</li>
+</ul>
 
 
-Overview
+<h2>Technical Highlights ⚙️</h2>
 
-This project involves creating a custom interactive shell program using C/C++ that can manage new processes, handle background and foreground processes, support input/output redirections, and implement basic shell commands (cd, echo, pwd, ls). The shell also supports pipelining and can display detailed process information.
-Features and Requirements
+<ul>
+  <li><strong>Low-Level System Calls</strong>: Implements direct POSIX-compliant system calls like <code>getcwd</code>, <code>chdir</code>, and others, simulating native shell behaviors.</li>
+  <li><strong>Error Handling and Validation</strong>: Every function call is designed with extensive error handling, ensuring robust operation even under unexpected conditions.</li>
+  <li><strong>Memory Management</strong>: Utilizes efficient memory handling practices to ensure low overhead for better performance.</li>
+</ul>
 
-    Shell Prompt Display:
-        The shell prompt displays the username, system name, and current directory.
-        Example: username@system_name:current_directory>
-        The directory from which the shell is invoked is represented by ~.
+<h2>Built With 🖥️</h2>
 
-    Built-in Commands:
-        cd: Changes the current directory.
-            Flags supported: ., .., -, ~.
-            Example: cd ..
-        echo: Prints the input string.
-            Handles spaces and tabs.
-            Example: echo "Hello World"
-        pwd: Prints the current working directory.
-            Example: pwd
+<ul>
+  <li><strong>C++</strong>: Core logic and system interactions.</li>
+  <li><strong>POSIX APIs</strong>: For seamless, UNIX-compatible system call handling.</li>
+  <li><strong>Version Control</strong>: Managed using Git and organized for seamless collaboration.</li>
+</ul>
 
-    ls Command:
-        Supports -a and -l flags.
-        Handles multiple flags and directory/file names.
-        Example: ls -al /path/to/dir
+<h3>Why This Shell? ✨</h3>
 
-    System Commands (Foreground and Background):
-        Executes system commands in the foreground or background.
-        Prints the process ID (PID) of background processes.
-        Example: gedit &
+<p>This project showcases:</p>
+<ul>
+  <li><strong>System Proficiency</strong>: Demonstrates in-depth understanding of system-level programming.</li>
+  <li><strong>Security Awareness</strong>: Minimalistic exposure of system data, keeping it secure and user-centric.</li>
+  <li><strong>Modular Design</strong>: Easily extensible and organized for readability and adaptability.</li>
+</ul>
 
-    pinfo Command:
-        Prints process-related information.
-        Example: pinfo 7777
+<h2>Getting Started 🚀</h2>
 
-    search Command:
-        Searches for a file or folder recursively under the current directory.
-        Example: search xyz.txt
+<ol>
+  <li><strong>Clone the repository</strong>:
+    <pre><code>git clone https://github.com/your-username/POSIX_Shell_Implementation.git
+cd POSIX_Shell_Implementation</code></pre>
+  </li>
+  <li><strong>Compile and Run</strong>:
+    <pre><code>make
+./my_shell</code></pre>
+  </li>
+  <li><strong>Start Exploring</strong>: Enter commands like <code>cd</code>, <code>pwd</code>, <code>echo Hello World!</code>, and more!</li>
+</ol>
 
-    Pipeline Support:
-        Supports command piping using |.
-        Example: cat file.txt | wc
+<h2><strong>Future Enhancements 🌱</strong></h2>
+<ul>
+    <li><strong>Command Piping & Redirection:</strong> Improve data handling between commands for more complex workflows.</li>
+    <li><strong>Built-in Command Autocompletion:</strong> Enhance user experience by implementing smarter and faster autocompletion features.</li>
+    <li><strong>Advanced User Configurations:</strong> Allow users to customize their shell environment and behaviors for a more personalized experience.</li>
+</ul>
 
-Implementation Details
-Shell Prompt
 
-    Dynamically fetches the username and system name.
-    Displays the current working directory.
-    Handles random spaces and tabs using strtok.
+<h2>Contributions</h2>
+<p> Welcome contributions from the community! If you're interested in contributing, please follow these steps:</p>
+<ol>
+    <li>Fork the repository.</li>
+    <li>Create a new branch for your feature or bug fix.</li>
+    <li>Make your changes and commit them with clear messages.</li>
+    <li>Push your changes to your forked repository.</li>
+    <li>Submit a pull request detailing your changes and the motivation behind them.</li>
+</ol>
+<p>Appreciate your interest in contributing and will review your pull request as soon as possible!</p>
 
-Built-in Commands Implementation
-
-    cd: Changes the current directory and handles special flags.
-    echo: Prints the input string, handling spaces and tabs.
-    pwd: Prints the current working directory.
-
-ls Command
-
-    ls -a: Lists all files including hidden ones.
-    ls -l: Lists files with detailed information.
-    Combination of Flags: Handles multiple flags and directory/file names.
-
-System Command Execution
-
-    Uses fork and execvp to execute commands.
-    Background processes are handled using &, printing their PIDs.
-
-pinfo Command
-
-    Retrieves and displays process information without using popen.
-
-search Command
-
-    Recursively searches for files or folders in the current directory.
-
-Pipeline Support
-
-    Uses pipe and dup2 to redirect output of one command to the input of another.
-
-Usage
-Compiling the Code
-
-sh
-
-$ gcc -o shell shell.c
-
-Running the Shell
-
-sh
-
-$ ./shell
-
-Examples
-
-    Changing Directory:
-
-    sh
-
-<Name@UBUNTU:~> cd /path/to/directory
-
-Echo Command:
-
-sh
-
-<Name@UBUNTU:~> echo "Hello, World!"
-
-Print Working Directory:
-
-sh
-
-<Name@UBUNTU:~> pwd
-
-List Files:
-
-sh
-
-<Name@UBUNTU:~> ls -al /path/to/directory
-
-Run Command in Background:
-
-sh
-
-<Name@UBUNTU:~> gedit &
-
-Process Info:
-
-sh
-
-<Name@UBUNTU:~> pinfo 1234
-
-Search File:
-
-sh
-
-<Name@UBUNTU:~> search filename.txt
-
-Command Pipeline:
-
-sh
-
-    <Name@UBUNTU:~> cat file.txt | wc
-
-Guidelines
-
-    Modular Code: The code is organized into functions for better readability and maintenance.
-    Error Handling: Appropriate error handling is implemented for system calls and user inputs.
-    Documentation: Inline comments are added for clarity.
