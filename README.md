@@ -1,4 +1,4 @@
-<h1>POSIX Shell Implementation 🚀</h1>
+<h1>POSIX Shell Implementation </h1>
 
 <p>Welcome to my <strong>Custom POSIX Shell</strong> project! This shell isn’t just another terminal interface – it’s built from the ground up, designed to explore the nuances of system calls, error handling, and command-line operations with features that aim to enhance both utility and user experience. Whether you're exploring directory paths or handling process control, this shell has you covered!</p>
 
@@ -14,7 +14,7 @@
 </ul>
 
 
-<h2>Technical Highlights ⚙️</h2>
+<h2>Technical Highlights ⚙</h2>
 
 <ul>
   <li><strong>Low-Level System Calls</strong>: Implements direct POSIX-compliant system calls like <code>getcwd</code>, <code>chdir</code>, and others, simulating native shell behaviors.</li>
@@ -22,7 +22,7 @@
   <li><strong>Memory Management</strong>: Utilizes efficient memory handling practices to ensure low overhead for better performance.</li>
 </ul>
 
-<h2>Built With 🖥️</h2>
+<h2>Built With </h2>
 
 <ul>
   <li><strong>C++</strong>: Core logic and system interactions.</li>
@@ -30,7 +30,7 @@
   <li><strong>Version Control</strong>: Managed using Git and organized for seamless collaboration.</li>
 </ul>
 
-<h2><strong>Why Choose This Shell? 🚀</strong></h2>
+<h2><strong>Why Choose This Shell? </strong></h2>
 <p>This POSIX Shell implementation stands out for its focus on user-friendly features and robust functionality. Designed for both novice and experienced users, it offers:</p>
 <ul>
     <li><strong>Simplicity and Efficiency:</strong> Enjoy a streamlined interface that prioritizes ease of use without sacrificing power.</li>
@@ -41,7 +41,7 @@
 </ul>
 
 
-<h2>Getting Started 🚀</h2>
+<h2>Getting Started </h2>
 
 <ol>
   <li><strong>Clone the repository</strong>:
